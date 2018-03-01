@@ -1,6 +1,8 @@
 import './index.css'
 
-function draw () {
+const generation = 250
+
+function evolve () {
   const ctx = document.getElementById('canvas').getContext('2d')
 
   const alive = '#000000'
@@ -10,4 +12,4 @@ function draw () {
   ctx.fillRect(10, 10, 2, 2)
 }
 
-setInterval(draw, 250)
+setInterval(evolve, generation)
