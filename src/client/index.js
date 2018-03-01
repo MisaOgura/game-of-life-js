@@ -1,16 +1,13 @@
-const canvas = document.getElementById('canvas')
-const Path2D = window.Path2D
+import './index.css'
 
-if (canvas.getContext) {
-  const ctx = canvas.getContext('2d')
+function draw () {
+  const ctx = document.getElementById('canvas').getContext('2d')
 
-  const rectangle = new Path2D()
-  rectangle.rect(10, 10, 50, 50)
+  const alive = '#000000'
+  const dead = '#ffffff'
 
-  const circle = new Path2D()
-  circle.moveTo(125, 35)
-  circle.arc(100, 35, 25, 0, 2 * Math.PI)
-
-  ctx.stroke(rectangle)
-  ctx.fill(circle)
+  ctx.fillStyle = ctx.fillStyle === alive ? dead : alive
+  ctx.fillRect(10, 10, 2, 2)
 }
+
+setInterval(draw, 250)
