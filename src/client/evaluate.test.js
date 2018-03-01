@@ -1,49 +1,32 @@
 import { shouldLive } from './evaluate'
 
 describe('shouldLive', () => {
-  const cellOne = [1, 1]
+  const grid = [
+    [0, 0, 0, 0, 1, 0],
+    [1, 0, 0, 1, 0, 0],
+    [0, 1, 1, 0, 1, 1],
+    [0, 0, 0, 0, 1, 0],
+    [0, 0, 1, 0, 1, 1],
+    [1, 1, 0, 1, 0, 0]
+  ]
 
   describe('returns true when', () => {
     it('a cell has two neighbours', () => {
-      const grid = [
-        [1, 0, 0],
-        [1, 0, 0],
-        [0, 0, 0]
-      ]
-
-      expect(shouldLive(grid, cellOne)).toEqual(true)
+      expect(shouldLive(grid, [1, 1])).toEqual(true)
     })
 
     it('a cell has three neighbours', () => {
-      const grid = [
-        [1, 0, 1],
-        [0, 0, 0],
-        [0, 0, 1]
-      ]
-
-      expect(shouldLive(grid, cellOne)).toEqual(true)
+      expect(shouldLive(grid, [3, 1])).toEqual(true)
     })
   })
 
   describe('returns false when', () => {
     it('a cell has less than two neighbours', () => {
-      const grid = [
-        [1, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0]
-      ]
-
-      expect(shouldLive(grid, cellOne)).toEqual(false)
+      expect(shouldLive(grid, [0, 0])).toEqual(false)
     })
 
     it('a cell has more than three neighbours', () => {
-      const grid = [
-        [1, 0, 1],
-        [0, 0, 0],
-        [1, 0, 1]
-      ]
-
-      expect(shouldLive(grid, cellOne)).toEqual(false)
+      expect(shouldLive(grid, [4, 3])).toEqual(false)
     })
   })
 })
