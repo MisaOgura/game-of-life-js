@@ -5,9 +5,7 @@ export function shouldLive (grid, coord) {
 
   const neighbouringGrid = calculateNeighbouringGrid(grid, x, y)
 
-  const totalCellsAlive = neighbouringGrid
-    .map(filterLiveCells).reduce(flattenArray, []).length
-
+  const totalCellsAlive = neighbouringGrid.map(filterLiveCells).reduce(flattenArray, 0)
   const neighbours = isCellAlive ? totalCellsAlive - 1 : totalCellsAlive
 
   const underPopulated = neighbours < 2
@@ -21,11 +19,28 @@ function filterLiveCells (row) {
 }
 
 function flattenArray (accumulator, currentValue) {
-  return currentValue.concat(accumulator)
+  return accumulator + currentValue.length
 }
 
 function calculateNeighbouringGrid (grid, x, y) {
-  return grid.slice(x - 1, x + 2).map(row => row.slice(y - 1, y + 2))
+  const gridX = grid.length - 1
+  const gridY = grid[0].length - 1
+
+  const beginRow = foo(x)
+  const endRow = bar(x, gridX)
+
+  const beginColumn = foo(y)
+  const endColumn = bar(y, gridY)
+
+  return grid.slice(beginRow, endRow).map(row => row.slice(beginColumn, endColumn))
+}
+
+function foo (loc) {
+  return loc - 1 < 0 ? loc : loc - 1
+}
+
+function bar (loc, max) {
+  return loc + 1 > max ? loc + 1 : loc + 2
 }
 
 // TODO - implement with the chain of responsibility
