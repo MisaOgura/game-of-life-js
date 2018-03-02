@@ -1,25 +1,55 @@
+import Grid from './grid'
 import './index.css'
+import { ALIVE } from './constants'
 
-const generation = 250
+const speed = 250
 const width = 100
 const height = 100
 
 const ctx = document.getElementById('canvas').getContext('2d')
 
-const alive = '#000000'
+let imageData = ctx.getImageData(0, 0, width, height)
 
-ctx.fillStyle = alive
-ctx.fillRect(0, 0, 1, 1)
-ctx.fillRect(1, 0, 1, 1)
+const grid = new Grid(width, height)
+grid.populate(3000)
 
-function evolve () {
-  let imageData = ctx.getImageData(0, 0, width, height)
-  console.log(imageData)
+// flatten grid
+const flattenedGrid = grid.grid.reduce((accum, currentValue) => accum.concat(currentValue))
 
-  imageData.data[3] -= 10
+const data = []
+flattenedGrid.map(cell => {
+  const isCellAlive = cell === ALIVE
+  isCellAlive ? data.push(0, 0, 0, 255) : data.push(0, 0, 0, 0)
+})
 
-  ctx.putImageData(imageData, 0, 0)
-  console.log(imageData)
+for (let i = 0; i < imageData.data.length; i += 4) {
+  imageData.data[i] = data[i]
+  imageData.data[i + 1] = data[i + 1]
+  imageData.data[i + 2] = data[i + 2]
+  imageData.data[i + 3] = data[i + 3]
 }
 
-setInterval(evolve, generation)
+ctx.putImageData(imageData, 0, 0)
+
+function evolve () {
+  grid.evolve()
+
+  const flattenedGrid = grid.grid.reduce((accum, currentValue) => accum.concat(currentValue))
+
+  const data = []
+  flattenedGrid.map(cell => {
+    const isCellAlive = cell === ALIVE
+    isCellAlive ? data.push(0, 0, 0, 255) : data.push(0, 0, 0, 0)
+  })
+
+  for (let i = 0; i < imageData.data.length; i += 4) {
+    imageData.data[i] = data[i]
+    imageData.data[i + 1] = data[i + 1]
+    imageData.data[i + 2] = data[i + 2]
+    imageData.data[i + 3] = data[i + 3]
+  }
+
+  ctx.putImageData(imageData, 0, 0)
+}
+
+setInterval(evolve, speed)
