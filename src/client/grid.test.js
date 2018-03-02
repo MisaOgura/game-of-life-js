@@ -3,6 +3,7 @@ import Grid from './grid'
 describe('Grid', () => {
   const width = 10
   const height = 20
+  const initPopulation = 70
   const totalNumOfCells = width * height
 
   let grid
@@ -29,10 +30,18 @@ describe('Grid', () => {
 
   describe('populate', () => {
     it('populates with a given number of live cells', () => {
-      const numOfInitLiveCells = 35
-      grid.populate(numOfInitLiveCells)
-      expect(grid.numOfDeadCells).toEqual(totalNumOfCells - numOfInitLiveCells)
-      expect(grid.numOfLiveCells).toEqual(numOfInitLiveCells)
+      grid.populate(initPopulation)
+      expect(grid.numOfDeadCells).toEqual(totalNumOfCells - initPopulation)
+      expect(grid.numOfLiveCells).toEqual(initPopulation)
+    })
+  })
+
+  describe('evolve', () => {
+    it('updates the grid for the next generation', () => {
+      grid.populate(initPopulation)
+      console.log(grid)
+      grid.evolve()
+      console.log(grid)
     })
   })
 })

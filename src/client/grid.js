@@ -1,3 +1,4 @@
+import { shouldDie, shouldRevive } from './evaluate'
 import { ALIVE, DEAD } from './constants'
 
 class Grid {
@@ -25,6 +26,21 @@ class Grid {
       let coord = generateRandomCoord(this.width, this.height)
       this.grid[coord[0]][coord[1]] = 1
     }
+  }
+
+  evolve () {
+    let nextGeneration = []
+    for (let i = 0; i < this.height; i++) {
+      nextGeneration.push(this.grid[i].map((cell, j) => {
+        const isCellAlive = cell === ALIVE
+        if (isCellAlive && shouldDie(this.grid, [i, j])) return 0
+        if (!isCellAlive && shouldRevive(this.grid, [i, j])) return 1
+
+        return cell
+      }))
+    }
+
+    this.grid = nextGeneration
   }
 }
 
