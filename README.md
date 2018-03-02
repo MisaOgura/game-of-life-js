@@ -1,8 +1,14 @@
-## A boilerplate for simple static react app
+## Conway's Game of Life - Vanilla JS
+
+This is my first experimentation on implementing the Conway's Game of Life in vanilla JavaScript.
+
+It is a work in progress, and I'm hoping to explore ways to improve the performance, as well as patterns.
+
+![ Conway's Game of Life](https://github.com/MisaOgura/game-of-life-js/raw/master/game-of-life.gif)
 
 ## Instructions
 
-### To run the app locally
+### To run it locally
 
 1. Make sure you have `node` and `npm` installed, if not refer to below.
     - Mac users: https://changelog.com/posts/install-node-js-with-homebrew-on-os-x
@@ -47,7 +53,7 @@
 This should automatically open up a window in a browser. If not, visit
 `http://localhost:8080/`: you should see a `hello world` message.
 
-7. Use the repo as a starting point of your app!
+7. Observe the mesmerising world of tiny cells!
 
 
 ### To run tests
@@ -71,11 +77,6 @@ and coverage report.
     ```
 
 Happy TDD!
-
-
-## Contributions
-
-Please feel free to raise PRs or open issues to help improve the boilerplate.
 
 
 ## Authour
