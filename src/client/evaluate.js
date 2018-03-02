@@ -1,3 +1,5 @@
+import { ALIVE } from './constants'
+
 export function shouldLive (grid, coord) {
   const x = coord[0]
   const y = coord[1]
@@ -15,7 +17,7 @@ export function shouldLive (grid, coord) {
 }
 
 function filterLiveCells (row) {
-  return row.filter(cell => cell === 1)
+  return row.filter(cell => cell === ALIVE)
 }
 
 function sumOfCells (accumulator, currentValue) {
