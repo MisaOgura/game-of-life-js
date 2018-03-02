@@ -12,7 +12,7 @@ describe('Grid', () => {
   })
 
   describe('On initialisation', () => {
-    it('initialises with a grid with the given width and height', () => {
+    it('is a grid with the given width and height', () => {
       const matrix = grid.matrix
       const numOfRow = matrix.length
       const nomOfColumn = matrix[0].length
@@ -21,9 +21,18 @@ describe('Grid', () => {
       expect(nomOfColumn).toEqual(width)
     })
 
-    it('initialises only with dead cells', () => {
+    it('contains only dead cells', () => {
       expect(grid.numOfDeadCells).toEqual(totalNumOfCells)
       expect(grid.numOfLiveCells).toEqual(0)
+    })
+  })
+
+  describe('populate', () => {
+    it('populates with a given number of live cells', () => {
+      const numOfInitLiveCells = 35
+      grid.populate(numOfInitLiveCells)
+      expect(grid.numOfDeadCells).toEqual(totalNumOfCells - numOfInitLiveCells)
+      expect(grid.numOfLiveCells).toEqual(numOfInitLiveCells)
     })
   })
 })

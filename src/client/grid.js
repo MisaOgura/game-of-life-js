@@ -1,10 +1,10 @@
-import { ALIVE } from './constants'
+import { ALIVE, DEAD } from './constants'
 
 class Grid {
   constructor (width, height) {
     this.width = width
     this.height = height
-    this.grid = this._initialiseMatrix()
+    this.grid = initialiseMatrix(this.width, this.height)
   }
 
   get matrix () {
@@ -20,9 +20,27 @@ class Grid {
     return totalNumOfCells - this.numOfLiveCells
   }
 
-  _initialiseMatrix () {
-    return new Array(this.height).fill(new Array(this.width).fill(0))
+  populate (initPopulation) {
+    while (this.numOfLiveCells < initPopulation) {
+      let coord = generateRandomCoord(this.width, this.height)
+      this.grid[coord[0]][coord[1]] = 1
+    }
   }
+}
+
+function initialiseMatrix (w, h) {
+  let grid = []
+  for (let i = 0; i < h; i++) {
+    grid.push(new Array(w).fill(DEAD))
+  }
+
+  return grid
+}
+
+function generateRandomCoord (w, h) {
+  const x = Math.floor(Math.random() * Math.floor(h))
+  const y = Math.floor(Math.random() * Math.floor(w))
+  return [x, y]
 }
 
 function filterLiveCells (row) {
