@@ -1,19 +1,35 @@
-import { ALIVE } from './constants'
+import { ALIVE, DEAD } from './constants'
 
-export function shouldLive (grid, coord) {
+export function shouldDie (grid, coord) {
   const x = coord[0]
   const y = coord[1]
-  const isCellAlive = grid[x][y] === 1
+  const isCellDead = grid[x][y] === DEAD
+
+  // TODO - should it call shouldRevive instead of throwing?
+  if (isCellDead) throw Error()
 
   const neighbouringGrid = cropNeighbouringGrid(grid, x, y)
-
   const totalCellsAlive = neighbouringGrid.map(filterLiveCells).reduce(sumOfCells, 0)
-  const neighbours = isCellAlive ? totalCellsAlive - 1 : totalCellsAlive
 
+  const neighbours = totalCellsAlive - 1
   const underPopulated = neighbours < 2
   const overPopulated = neighbours > 3
 
-  return !underPopulated && !overPopulated
+  return underPopulated || overPopulated
+}
+
+export function shouldRevive (grid, coord) {
+  const x = coord[0]
+  const y = coord[1]
+  const isCellAlive = grid[x][y] === ALIVE
+
+  // TODO - should it call shouldDie instead of throwing?
+  if (isCellAlive) throw Error()
+
+  const neighbouringGrid = cropNeighbouringGrid(grid, x, y)
+  const neighbours = neighbouringGrid.map(filterLiveCells).reduce(sumOfCells, 0)
+
+  return neighbours === 3
 }
 
 function filterLiveCells (row) {
