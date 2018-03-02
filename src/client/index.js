@@ -1,15 +1,25 @@
 import './index.css'
 
 const generation = 250
+const width = 100
+const height = 100
+
+const ctx = document.getElementById('canvas').getContext('2d')
+
+const alive = '#000000'
+
+ctx.fillStyle = alive
+ctx.fillRect(0, 0, 1, 1)
+ctx.fillRect(1, 0, 1, 1)
 
 function evolve () {
-  const ctx = document.getElementById('canvas').getContext('2d')
+  let imageData = ctx.getImageData(0, 0, width, height)
+  console.log(imageData)
 
-  const alive = '#000000'
-  const dead = '#ffffff'
+  imageData.data[3] -= 10
 
-  ctx.fillStyle = ctx.fillStyle === alive ? dead : alive
-  ctx.fillRect(10, 10, 2, 2)
+  ctx.putImageData(imageData, 0, 0)
+  console.log(imageData)
 }
 
 setInterval(evolve, generation)
