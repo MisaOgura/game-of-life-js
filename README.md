@@ -4,6 +4,8 @@ This is my first experimentation on implementing the Conway's Game of Life in va
 
 It is a work in progress, and I'm hoping to explore ways to improve the performance, as well as patterns.
 
+Below is an example of the evolution with B3/S24 configuration:
+
 ![ Conway's Game of Life](https://github.com/MisaOgura/game-of-life-js/raw/master/game-of-life.gif)
 
 ## Instructions
@@ -28,16 +30,16 @@ It is a work in progress, and I'm hoping to explore ways to improve the performa
 3. Clone the repository.
     - Using SSH (recommended):
     ```
-    $ git clone git@github.com:MisaOgura/react-static-app-boilerplate.git
+    $ git clone git@github.com:MisaOgura/game-of-life-js.git
     ```
     - Using HTTPS:
     ```
-    $ git clone https://github.com/MisaOgura/react-static-app-boilerplate.git
+    $ git clone https://github.com/MisaOgura/game-of-life-js.git
     ```
     
 4. Move into the cloned directory.
     ```
-    $ cd react-static-app-boilerplate
+    $ cd game-of-life-js
     ```
 
 5. Install dependencies.
@@ -45,13 +47,13 @@ It is a work in progress, and I'm hoping to explore ways to improve the performa
     $ npm/yarn install
     ```
     
-6. Run the app locally in a _development_ mode.
+6. Run the app locally in a _dev_ mode.
     ```
     $ npm/yarn start
     ```
     
 This should automatically open up a window in a browser. If not, visit
-`http://localhost:8080/`: you should see a `hello world` message.
+`http://localhost:8080/`: you should see the grid where all the magic happens.
 
 7. Observe the mesmerising world of tiny cells!
 
