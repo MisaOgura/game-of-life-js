@@ -1,4 +1,10 @@
-import { ALIVE, DEAD } from './constants'
+import {
+  ALIVE,
+  DEAD,
+  UNDERPOPULATION_THRESHOLD,
+  OVERPOPULATION_THRESHOLD,
+  OPTIMALENV_THRESHOLD
+} from './constants'
 
 export function shouldDie (grid, coord) {
   const x = coord[0]
@@ -9,11 +15,9 @@ export function shouldDie (grid, coord) {
   if (isCellDead) throw Error()
 
   const neighbouringGrid = cropNeighbouringGrid(grid, x, y)
-  const totalCellsAlive = neighbouringGrid.map(filterLiveCells).reduce(sumOfCells, 0)
-
-  const neighbours = totalCellsAlive - 1
-  const underPopulated = neighbours < 2
-  const overPopulated = neighbours > 3
+  const neighbours = neighbouringGrid.map(filterLiveCells).reduce(sumOfCells, 0) - 1
+  const underPopulated = neighbours < UNDERPOPULATION_THRESHOLD
+  const overPopulated = neighbours > OVERPOPULATION_THRESHOLD
 
   return underPopulated || overPopulated
 }
@@ -29,7 +33,7 @@ export function shouldRevive (grid, coord) {
   const neighbouringGrid = cropNeighbouringGrid(grid, x, y)
   const neighbours = neighbouringGrid.map(filterLiveCells).reduce(sumOfCells, 0)
 
-  return neighbours === 3
+  return neighbours === OPTIMALENV_THRESHOLD
 }
 
 function filterLiveCells (row) {

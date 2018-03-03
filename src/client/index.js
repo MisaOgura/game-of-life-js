@@ -1,17 +1,13 @@
 import Grid from './grid'
 import './index.css'
-import { ALIVE } from './constants'
-
-const speed = 250
-const width = 100
-const height = 100
+import { SPEED, WIDTH, HEIGHT, ALIVE, INITPOPULATION } from './constants'
 
 const ctx = document.getElementById('canvas').getContext('2d')
 
-let imageData = ctx.getImageData(0, 0, width, height)
+let imageData = ctx.getImageData(0, 0, WIDTH, HEIGHT)
 
-const grid = new Grid(width, height)
-grid.populate(3000)
+const grid = new Grid(WIDTH, HEIGHT)
+grid.populate(INITPOPULATION)
 
 // flatten grid
 const flattenedGrid = grid.grid.reduce((accum, currentValue) => accum.concat(currentValue))
@@ -52,4 +48,4 @@ function evolve () {
   ctx.putImageData(imageData, 0, 0)
 }
 
-setInterval(evolve, speed)
+setInterval(evolve, SPEED)

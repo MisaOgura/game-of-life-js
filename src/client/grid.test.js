@@ -40,9 +40,7 @@ describe('Grid', () => {
     it('updates the grid for the next generation', () => {
       grid.populate(initPopulation)
       grid.evolve()
-      console.log(grid)
       grid.evolve()
-      console.log(grid)
     })
   })
 })
