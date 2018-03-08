@@ -1,4 +1,4 @@
-import Grid from './grid'
+import GameOfLife from './GameOfLife'
 import './index.css'
 import { SPEED, WIDTH, HEIGHT, ALIVE, INITPOPULATION } from './constants'
 
@@ -6,11 +6,11 @@ const ctx = document.getElementById('canvas').getContext('2d')
 
 let imageData = ctx.getImageData(0, 0, WIDTH, HEIGHT)
 
-const grid = new Grid(WIDTH, HEIGHT)
-grid.populate(INITPOPULATION)
+const gameOfLife = new GameOfLife(WIDTH, HEIGHT)
+gameOfLife.populate(INITPOPULATION)
 
 // flatten grid
-const flattenedGrid = grid.grid.reduce((accum, currentValue) => accum.concat(currentValue))
+const flattenedGrid = gameOfLife.grid.reduce((accum, currentValue) => accum.concat(currentValue))
 
 const data = []
 flattenedGrid.map(cell => {
@@ -28,9 +28,9 @@ for (let i = 0; i < imageData.data.length; i += 4) {
 ctx.putImageData(imageData, 0, 0)
 
 function evolve () {
-  grid.evolve()
+  gameOfLife.evolve()
 
-  const flattenedGrid = grid.grid.reduce((accum, currentValue) => accum.concat(currentValue))
+  const flattenedGrid = gameOfLife.grid.reduce((accum, currentValue) => accum.concat(currentValue))
 
   const data = []
   flattenedGrid.map(cell => {

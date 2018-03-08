@@ -12,11 +12,10 @@ describe('GameOfLife', () => {
     gameOfLife = new GameOfLife(width, height)
   })
 
-  describe.only('On initialisation', () => {
+  describe('On initialisation', () => {
     it('is a grid with the given width and height', () => {
-      const grid = gameOfLife.grid
-      const numOfRow = grid.length
-      const nomOfColumn = grid[0].length
+      const numOfRow = gameOfLife.grid.length
+      const nomOfColumn = gameOfLife.grid[0].length
 
       expect(numOfRow).toEqual(height)
       expect(nomOfColumn).toEqual(width)

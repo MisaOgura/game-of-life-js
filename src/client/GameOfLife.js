@@ -8,10 +8,6 @@ class GameOfLife {
     this.grid = initialiseMatrix(this.width, this.height)
   }
 
-  get matrix () {
-    return this.grid
-  }
-
   get numOfLiveCells () {
     return this.grid.map(filterLiveCells).reduce(sum, 0)
   }
