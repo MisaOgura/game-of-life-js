@@ -1,7 +1,7 @@
 import { shouldDie, shouldRevive } from './evaluate'
 import { ALIVE, DEAD } from './constants'
 
-class Grid {
+class GameOfLife {
   constructor (width, height) {
     this.width = width
     this.height = height
@@ -22,10 +22,12 @@ class Grid {
   }
 
   populate (initPopulation) {
+    console.time('populate')
     while (this.numOfLiveCells < initPopulation) {
       let coord = generateRandomCoord(this.width, this.height)
       this.grid[coord[0]][coord[1]] = 1
     }
+    console.timeEnd('populate')
   }
 
   evolve () {
@@ -67,4 +69,4 @@ function sum (accumulator, currentValue) {
   return accumulator + currentValue.length
 }
 
-export default Grid
+export default GameOfLife
