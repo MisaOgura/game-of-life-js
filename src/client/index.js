@@ -6,8 +6,11 @@ const ctx = document.getElementById('canvas').getContext('2d')
 
 let imageData = ctx.getImageData(0, 0, WIDTH, HEIGHT)
 
+console.time('initialisation')
 const gameOfLife = new GameOfLife(WIDTH, HEIGHT)
-gameOfLife.populate(INITPOPULATION)
+// gameOfLife.populate(INITPOPULATION)
+console.log(`num of initial population: ${gameOfLife.numOfLiveCells}`)
+console.timeEnd('initialisation')
 
 // flatten grid
 const flattenedGrid = gameOfLife.grid.reduce((accum, currentValue) => accum.concat(currentValue))

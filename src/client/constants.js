@@ -1,4 +1,4 @@
-export const SPEED = 150
+export const SPEED = 125
 export const WIDTH = 200
 export const HEIGHT = 200
 export const INITPOPULATION = 8000

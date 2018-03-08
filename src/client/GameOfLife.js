@@ -18,12 +18,10 @@ class GameOfLife {
   }
 
   populate (initPopulation) {
-    console.time('populate')
     while (this.numOfLiveCells < initPopulation) {
       let coord = generateRandomCoord(this.width, this.height)
       this.grid[coord[0]][coord[1]] = 1
     }
-    console.timeEnd('populate')
   }
 
   evolve () {
@@ -45,10 +43,23 @@ class GameOfLife {
 function initialiseMatrix (w, h) {
   let grid = []
   for (let i = 0; i < h; i++) {
-    grid.push(new Array(w).fill(DEAD))
+    grid.push([])
   }
 
+  grid.map(row => {
+    for (let j = 0; j < w; j++) {
+      row.push(getBiasedRnd(0.18, 1))
+    }
+  })
+
   return grid
+}
+
+function getBiasedRnd (bias, influence) {
+  const rnd = Math.random() * (ALIVE - DEAD) + DEAD    // randomly generate 0 or 1
+  const mix = Math.random() * influence                // random mixer
+  const biasedRnd = rnd * (1 - mix) + bias * mix       // mix full range and bias
+  return Math.floor(biasedRnd * Math.floor(2))
 }
 
 function generateRandomCoord (w, h) {
