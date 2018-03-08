@@ -4,9 +4,9 @@ This is my first experimentation on implementing the Conway's Game of Life in va
 
 It is a work in progress, and I'm hoping to explore ways to improve the performance, as well as patterns.
 
-Below is an example of the evolution with B3/S24 configuration:
+Below is an example of the game with the classic B3/S23 configuration:
 
-![ Conway's Game of Life](https://github.com/MisaOgura/game-of-life-js/raw/master/game-of-life.gif)
+![Conway's Game of Life](https://github.com/MisaOgura/game-of-life-js/raw/master/gol-b3s23.gif)
 
 ## Instructions
 
