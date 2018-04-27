@@ -46,9 +46,19 @@ function initialiseMatrix (w, h) {
     grid.push([])
   }
 
-  grid.map(row => {
-    for (let j = 0; j < w; j++) {
-      row.push(getBiasedRnd(0.18, 1))
+  grid.map((row, rowIndex) => {
+    if (rowIndex == 0) { // first row
+      for (let cellIndex = 0; cellIndex < w; cellIndex++) {
+        row[cellIndex-1] == 0 ? row.push(1) : row.push(0)
+      }
+    } else {
+      for (let cellIndex = 0; cellIndex < w; cellIndex++) {
+        if (cellIndex == 0) { // first cell of each row
+          grid[rowIndex-1][0] == 0 ? row.push(1) : row.push(0)
+        } else {
+          row[cellIndex-1] == 0 ? row.push(1) : row.push(0)
+        }
+      }
     }
   })
 
