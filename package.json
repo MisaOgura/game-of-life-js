@@ -76,8 +76,8 @@
       "./src/shim.js"
     ],
     "setupFiles": [
-      "<rootDir>/src/shim.js",
-      "<rootDir>/src/setupTest.js"
+      "<rootDir>/shim.js",
+      "<rootDir>/setupTest.js"
     ]
   },
   "standard": {
