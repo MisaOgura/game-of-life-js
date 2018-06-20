@@ -40,7 +40,7 @@ module.exports = {
     historyApiFallback: true,
     contentBase: path.join(__dirname, 'public')
   },
-  entry: ['babel-polyfill', './src/client'],
+  entry: ['babel-polyfill', './src'],
   output: {
     libraryTarget: 'umd',
     filename: 'static/js/[name].[chunkhash:8].js',
