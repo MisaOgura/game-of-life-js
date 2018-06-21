@@ -1,6 +1,6 @@
 export const SPEED = 125
-export const WIDTH = 150
-export const HEIGHT = 150
+export const WIDTH = 600
+export const HEIGHT = 600
 export const INITPOPULATION = 8000
 export const DEAD = 0
 export const ALIVE = 1
