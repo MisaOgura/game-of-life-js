@@ -25,6 +25,7 @@ class GameOfLife {
 }
 
 function initialiseCheckerBoard (w, h) {
+  console.time('initialisation')
   let grid = []
   let flag = 0
 
@@ -35,7 +36,7 @@ function initialiseCheckerBoard (w, h) {
       flag = 1 - flag
     }
   }
-
+  console.timeEnd('initialisation')
   return grid
 }
 
