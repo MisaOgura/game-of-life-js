@@ -5,7 +5,7 @@ class GameOfLife {
   constructor (width, height) {
     this.width = width
     this.height = height
-    this.grid = initialiseMatrix(this.width, this.height)
+    this.grid = initialiseCheckerBoard(this.width, this.height)
   }
 
   get numOfLiveCells () {
@@ -40,27 +40,17 @@ class GameOfLife {
   }
 }
 
-function initialiseMatrix (w, h) {
+function initialiseCheckerBoard (w, h) {
   let grid = []
-  for (let i = 0; i < h; i++) {
-    grid.push([])
-  }
+  let flag = 0
 
-  grid.map((row, rowIndex) => {
-    if (rowIndex == 0) { // first row
-      for (let cellIndex = 0; cellIndex < w; cellIndex++) {
-        row[cellIndex-1] == 0 ? row.push(1) : row.push(0)
-      }
-    } else {
-      for (let cellIndex = 0; cellIndex < w; cellIndex++) {
-        if (cellIndex == 0) { // first cell of each row
-          grid[rowIndex-1][0] == 0 ? row.push(1) : row.push(0)
-        } else {
-          row[cellIndex-1] == 0 ? row.push(1) : row.push(0)
-        }
-      }
+  for (let i=0; i<h; i++) {
+    grid.push([])
+    for (let j=0, flag=i%2 ; j<w; j++) {
+      grid[i][j] = flag
+      flag = 1 - flag
     }
-  })
+  }
 
   return grid
 }
