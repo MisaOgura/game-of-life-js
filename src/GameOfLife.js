@@ -10,13 +10,18 @@ class GameOfLife {
 
   evolve () {
     let nextGeneration = []
-    for (let i = 0; i < this.height; i++) {
+
+    for (let i=0; i<this.height; i++) {
       nextGeneration.push(this.grid[i].map((cell, j) => {
         const isCellAlive = cell === ALIVE
-        if (isCellAlive && shouldDie(this.grid, [i, j])) return 0
-        if (!isCellAlive && shouldRevive(this.grid, [i, j])) return 1
 
-        return cell
+        if (isCellAlive && shouldDie(this.grid, [i, j])) {
+          return DEAD
+        } else if (!isCellAlive && shouldRevive(this.grid, [i, j])) {
+          return ALIVE
+        } else {
+          return cell
+        }
       }))
     }
 
@@ -27,7 +32,6 @@ class GameOfLife {
 function initialiseCheckerBoard (w, h) {
   console.time('initialisation')
   let grid = []
-  let flag = 0
 
   for (let i=0; i<h; i++) {
     grid.push([])

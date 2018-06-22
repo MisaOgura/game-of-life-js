@@ -20,8 +20,8 @@ function evolve () {
 function mapGridToCanvas (grid, imageData, ctx) {
   for (let i=0; i<HEIGHT; i++) {
     for (let j=0, flag=i%2 ; j<WIDTH; j++) {
-    const isCellAlive = gameOfLife.grid[i][j] === ALIVE
-    imageData.data[(i*WIDTH+j)*4 + 3] = isCellAlive ? BLACK : WHITE
+    const cellColour = gameOfLife.grid[i][j] === ALIVE ? BLACK : WHITE
+    imageData.data[(i*WIDTH+j)*4 + 3] = cellColour
     }
   }
   ctx.putImageData(imageData, 0, 0)
