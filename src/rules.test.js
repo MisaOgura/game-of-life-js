@@ -1,4 +1,4 @@
-import { shouldDie, shouldRevive } from './evaluate'
+import { shouldDie, shouldRevive } from './rules'
 
 const grid = [
   [0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0], // 0

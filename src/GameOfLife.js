@@ -1,4 +1,4 @@
-import { shouldDie, shouldRevive } from './evaluate'
+import { shouldDie, shouldRevive } from './rules'
 import { ALIVE, DEAD } from './constants'
 
 class GameOfLife {
@@ -11,7 +11,7 @@ class GameOfLife {
   evolve () {
     let nextGeneration = []
 
-    for (let i=0; i<this.height; i++) {
+    for (let i = 0; i < this.height; i++) {
       nextGeneration.push(this.grid[i].map((cell, j) => {
         const isCellAlive = cell === ALIVE
 
@@ -31,16 +31,19 @@ class GameOfLife {
 
 function initialiseCheckerBoard (w, h) {
   console.time('initialisation')
+
   let grid = []
 
-  for (let i=0; i<h; i++) {
+  for (let i = 0; i < h; i++) {
     grid.push([])
-    for (let j=0, flag=i%2 ; j<w; j++) {
+    for (let j = 0, flag = i % 2; j < w; j++) {
       grid[i][j] = flag
       flag = 1 - flag
     }
   }
+
   console.timeEnd('initialisation')
+
   return grid
 }
 
